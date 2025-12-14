@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AW2SHOP Repair and Services - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="landing-page-wrapper">
+
+        <header id="main-header">
+            <div id="header-left">
+                <img id="header-logo" src="graphics/icon.ico" alt="AW2SHOP Icon">
+                <nav id="top-nav-buttons">
+                    <a href="#" class="nav-button" data-page="about">About</a>
+                    <a href="#" class="nav-button" data-page="contact">Contact</a>
+                </nav>
+            </div>
+            <div id="header-right">
+                <a href="front.html" id="employee-button">Employee</a>
+            </div>
+        </header>
+
+        <main id="hero-section">
+            <div id="hero-content">
+                <h1 id="hero-title"></h1>
+                <p id="hero-bio"></p>
+            </div>
+            <div id="hero-image-container">
+                 <img id="hero-logo" src="graphics/icon.ico" alt="AW2SHOP Logo">
+            </div>
+        </main>
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.getElementById('hero-title');
+            const bio = document.getElementById('hero-bio');
+            const navButtons = document.querySelectorAll('.nav-button');
+
+            const contentMap = {
+                about: {
+                    title: "Welcome to AW2Shop Repair and Services!",
+                    bio: "As the leading local provider, we offer high-quality, efficient automotive repair and maintenance services. Our commitment to excellence ensures your vehicle receives the best care, utilizing cutting-edge diagnostics and expert technicians to get you safely back on the road."
+                },
+                contact: {
+                    title: "Here are our contacts",
+                    bio: "Phone: (02) 800-AW2S (2927) | Email: support@aw2shop.com | Address: 123 Main St, Quezon City, Philippines. Visit us during business hours: Mon-Sat, 8am-5pm."
+                }
+            };
+
+            const updateContent = (pageKey) => {
+                const content = contentMap[pageKey];
+                title.textContent = content.title;
+                bio.textContent = content.bio;
+            };
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    updateContent(e.target.dataset.page);
+                });
+            });
+
+            updateContent('about');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "aw2shop-portal-backend",
+  "version": "1.0.0",
+  "description": "Netlify Functions for AW2SHOP Technician Portal",
+  "main": "netlify/functions/authenticate.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3"
+  }
+}

@@ -1,0 +1,405 @@
+/* --- Global Reset & HTML/Body Base --- */
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- Red/Dark Palette Definition (Global) --- */
+:root {
+    --primary-red: #E74C3C; 
+    --hover-red: #C0392B;  
+    --text-color: #fff;
+    --background-color: rgba(0, 0, 0, 0.75); /* Dark blur background */
+    --dark-accent: #333; /* Marketing page dark text/header */
+}
+
+/* ================================================================== */
+/* --- STYLES FOR front.html (Technician Login Portal) --- */
+/* ================================================================== */
+
+/* FIX 1: Guaranteed dark theme for the portal page */
+.portal-page {
+    background-color: #000;
+    color: var(--text-color);
+}
+
+/* --- Go Back Button Styling (Portal) --- */
+#go-back-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.go-back-button {
+    background: var(--background-color);
+    backdrop-filter: blur(5px);
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.go-back-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* --- The Panoramic Background (The Immersive Effect) --- */
+#panoramic-background {
+    background-image: url('graphics/panorama.png'); 
+    background-repeat: no-repeat;
+    background-size: 
+        max(150vw, 1500px) max(150vh, 1500px); 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    background-position: 50% 50%;
+    transition: background-position 0.7s ease-out; 
+    z-index: 1; 
+}
+
+/* --- MOBILE PORTRAIT FIX: Static, Unmanipulated Image (Portal) --- */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    #panoramic-background {
+        background-size: cover; 
+        background-position: center center; 
+        transition: none; 
+        transform: none; 
+    }
+}
+
+/* --- ADAPTIVE LOGIN LAYOUT (Desktop/Landscape) --- */
+#content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center; 
+    justify-content: space-around; 
+    padding: 0 5%;
+    box-sizing: border-box;
+    padding-top: 0; 
+}
+
+/* --- Logo Icon & Text Positioning Container --- */
+#logo-icon-container {
+    text-align: center;
+    margin-right: 5%;
+    align-self: center; 
+    margin-top: -10vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0; 
+}
+
+#logo-icon {
+    width: 100%;
+    max-width: 250px; 
+    height: auto;
+    display: block; 
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Blurred Text Box Styling (Logo Text) --- */
+.blurred-text-box {
+    background: var(--background-color); 
+    backdrop-filter: blur(8px); 
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000;
+    margin-bottom: 0;
+    color: var(--text-color); 
+}
+
+#logo-text-box {
+    font-size: 2.16em; 
+    margin-top: 5px; 
+    white-space: nowrap;
+}
+
+#form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* --- Technician Login Form Styling --- */
+#login-container {
+    background: var(--background-color); 
+    backdrop-filter: blur(5px); 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    width: 300px; 
+    text-align: center;
+    position: static; 
+    transform: none; 
+}
+
+/* --- Form Inputs (Restored Horizontal Alignment for Desktop/Landscape) --- */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex; /* Use flex to put label and input side-by-side */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-group label {
+    /* Set a fixed width for the label to align inputs vertically */
+    display: block;
+    width: 80px; 
+    margin-bottom: 0; 
+    font-weight: bold;
+    color: #ccc;
+    white-space: nowrap;
+}
+
+.input-group input {
+    /* Input field takes the remaining space */
+    width: calc(100% - 90px); 
+    padding: 15px 10px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2); 
+    color: var(--text-color);
+    box-sizing: border-box; 
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-red);
+}
+
+/* --- LOG IN Button --- */
+#login-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-red); 
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#login-button:hover {
+    background: var(--hover-red); 
+}
+
+/* --- Adaptive Positioning and Sizing (Portal Mobile Portrait) --- */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    /* Reset input group to stacked layout for mobile portrait to save space */
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .input-group label {
+        width: auto;
+        margin-bottom: 5px;
+    }
+    .input-group input {
+        width: 100%;
+    }
+
+    /* Rest of mobile portrait styles */
+    #content-wrapper {
+        flex-direction: column;
+        justify-content: flex-start; 
+        padding-top: 5vh; 
+    }
+    #logo-icon-container {
+        margin-right: 0; 
+        margin-bottom: 5vh; 
+        margin-top: 0; 
+    }
+    #logo-icon {
+        width: 100px; 
+        max-width: 100px; 
+        margin-bottom: 0; 
+    }
+    #login-container {
+        width: 70%; 
+        max-width: 210px; 
+        padding: 25px; 
+    }
+    #logo-text-box {
+        display: block; 
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0; 
+        font-size: 0.7em; 
+        padding: 5px 10px;
+        backdrop-filter: blur(3px); 
+        background: rgba(0, 0, 0, 0.6); 
+    }
+}
+
+
+/* ================================================================== */
+/* --- STYLES FOR index.html (Marketing Landing Page) --- */
+/* ================================================================== */
+
+#landing-page-wrapper {
+    min-height: 100vh;
+    background-color: #fff; 
+    color: var(--dark-accent);
+}
+
+/* --- Header & Top Nav (Sleek Modern Design) --- */
+#main-header {
+    background-color: var(--dark-accent); 
+    color: var(--text-color);
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+}
+
+#header-logo {
+    width: 160px; 
+    height: auto;
+}
+
+#top-nav-buttons .nav-button {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 5px 15px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+#top-nav-buttons .nav-button:hover {
+    background-color: var(--primary-red); 
+    border-radius: 4px;
+}
+
+#header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#employee-button {
+    background-color: var(--primary-red); 
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#employee-button:hover {
+    background-color: var(--hover-red);
+}
+
+/* --- Hero Section (Main Content) --- */
+#hero-section {
+    min-height: 70vh;
+    background-color: #f0f0f0; 
+    padding: 50px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.05);
+}
+
+#hero-content {
+    max-width: 45%;
+    padding: 20px;
+    background: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#hero-title {
+    color: var(--primary-red);
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--primary-red);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#hero-bio {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: var(--dark-accent);
+}
+
+#hero-image-container {
+    max-width: 40%;
+    text-align: center;
+}
+
+#hero-logo {
+    width: 100%; 
+    height: auto;
+    max-width: 350px;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2)); 
+}
+
+/* --- Mobile Responsiveness for Landing Page (index.html) --- */
+@media screen and (max-width: 768px) {
+    #main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 50px; 
+    }
+    #header-left {
+        width: 100%;
+        justify-content: space-between;
+        padding-bottom: 5px;
+    }
+    #header-right {
+        position: absolute;
+        top: 10px;
+        right: 5%;
+    }
+    #hero-section {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+    }
+    #hero-content {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    #hero-image-container {
+        max-width: 60%;
+    }
+    #hero-logo {
+        max-width: 250px;
+    }
+}
