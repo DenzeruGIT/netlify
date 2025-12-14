@@ -1,8 +1,9 @@
-// --- COMPLETE LOGIN FORM SUBMISSION HANDLER (Final Version) ---
+// --- Replace your existing login logic with this ---
 
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault(); 
 
+    // Get credentials from the form inputs
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -26,21 +27,13 @@ loginForm.addEventListener('submit', async (e) => {
         // HANDLE THE RESPONSE
         if (response.ok) {
             // SUCCESS! Status code is 200.
-            
-            // 1. Save the secure token
             localStorage.setItem('auth_token', data.token); 
-            
-            // 2. REDIRECT TO THE NEW SUCCESS PAGE
-            window.location.href = 'authorized.html'; 
+            window.location.href = 'authorized.html'; // Redirect to the success page
 
         } else {
             // FAILURE! Status code is 401 or 500.
-            
-            // 1. Display the custom error message you requested
             alert('Wrong Credentials');
-            
-            // OPTIONAL: Clear the password field after failure
-            document.getElementById('password').value = ''; 
+            document.getElementById('password').value = ''; // Clear password on failure
         }
 
     } catch (error) {
