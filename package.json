@@ -1,11 +1,10 @@
 {
-  "name": "aw2shop-portal-backend",
+  "name": "netlify-secure-login",
   "version": "1.0.0",
-  "description": "Netlify Functions for AW2SHOP Technician Portal",
-  "main": "netlify/functions/authenticate.js",
+  "description": "Secure login using Netlify Functions and Neon DB.",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "^9.0.2", <--- THIS LINE IS CRITICAL
     "pg": "^8.11.3"
   }
 }
