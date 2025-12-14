@@ -1,11 +1,8 @@
-// --- COMPLETE LOGIN FORM SUBMISSION HANDLER ---
+// --- COMPLETE LOGIN FORM SUBMISSION HANDLER (Final Version) ---
 
 loginForm.addEventListener('submit', async (e) => {
-    // 1. Stop the page from refreshing
     e.preventDefault(); 
 
-    // Get the credentials the user typed
-    // IMPORTANT: These IDs must match your HTML input fields
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -15,37 +12,39 @@ loginForm.addEventListener('submit', async (e) => {
     }
 
     try {
-        // 2. SEND DATA TO YOUR NETLIFY SERVERLESS FUNCTION
-        // This is the CRITICAL line that connects the button to the backend security code!
+        // Send data to the secure Netlify Function
         const response = await fetch('/.netlify/functions/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            // Send the credentials as JSON data
             body: JSON.stringify({ username, password })
         });
 
         const data = await response.json();
 
-        // 3. HANDLE THE RESPONSE FROM THE SERVER
+        // HANDLE THE RESPONSE
         if (response.ok) {
-            // SUCCESS! Login is valid.
-            alert('Login Successful! Welcome!');
+            // SUCCESS! Status code is 200.
             
-            // SAVE THE SECURE TOKEN (JWT)
+            // 1. Save the secure token
             localStorage.setItem('auth_token', data.token); 
             
-            // REDIRECT TO THE ADMIN PAGE (or wherever your portal is)
-            window.location.href = 'front.html'; 
+            // 2. REDIRECT TO THE NEW SUCCESS PAGE
+            window.location.href = 'authorized.html'; 
 
         } else {
-            // FAILURE! Invalid username or password.
-            alert('Login Failed: ' + data.message);
+            // FAILURE! Status code is 401 or 500.
+            
+            // 1. Display the custom error message you requested
+            alert('Wrong Credentials');
+            
+            // OPTIONAL: Clear the password field after failure
+            document.getElementById('password').value = ''; 
         }
 
     } catch (error) {
         console.error('Network or Function Error:', error);
-        alert('An error occurred during login. Please ensure your Netlify function is deployed correctly.');
+        alert('An error occurred during login. Check console.');
     }
 });
